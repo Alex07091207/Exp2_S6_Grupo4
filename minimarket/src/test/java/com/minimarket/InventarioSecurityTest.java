@@ -27,7 +27,7 @@ public class InventarioSecurityTest {
     private InventarioService inventarioService;
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     public void dadoAdminCuandoRegistraMovimientoEntoncesOk() throws Exception {
         when(inventarioService.save(any(Inventario.class))).thenReturn(new Inventario());
 
@@ -40,7 +40,7 @@ public class InventarioSecurityTest {
     }
 
     @Test
-    @WithMockUser(username = "cajero", roles = {"CAJERO"})
+    @WithMockUser(username = "cajero", authorities = {"CAJERO"})
     public void dadoCajeroCuandoRegistraMovimientoEntoncesProhibido() throws Exception {
         String invJson = "{\"cantidad\":50, \"tipoMovimiento\":\"Entrada\"}";
 

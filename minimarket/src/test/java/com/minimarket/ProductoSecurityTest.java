@@ -29,7 +29,7 @@ public class ProductoSecurityTest {
 
     // Escenario 1: Éxito - Usuario con rol ADMIN intenta modificar
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     public void dadoUsuarioAdminCuandoModificaProductoEntoncesOk() throws Exception {
         // Simulamos que el producto existe en el servicio
         when(productoService.findById(anyLong())).thenReturn(new Producto());
@@ -45,7 +45,7 @@ public class ProductoSecurityTest {
 
     // Escenario 2: Error - Usuario con rol CLIENTE o CAJERO intenta modificar
     @Test
-    @WithMockUser(username = "cajero", roles = {"CAJERO"})
+    @WithMockUser(username = "cajero", authorities = {"CAJERO"})
     public void dadoUsuarioCajeroCuandoModificaProductoEntoncesProhibido() throws Exception {
         String productoJson = "{\"nombre\":\"Producto Hackeado\", \"precio\":10.0, \"stock\":999}";
 

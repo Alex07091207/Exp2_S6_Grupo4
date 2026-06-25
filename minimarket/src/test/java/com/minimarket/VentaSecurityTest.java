@@ -28,7 +28,7 @@ public class VentaSecurityTest {
 
     // Escenario 1: Éxito - El Cajero puede registrar ventas
     @Test
-    @WithMockUser(username = "cajeroUser", roles = {"CAJERO"})
+    @WithMockUser(username = "cajeroUser", authorities = {"CAJERO"})
     public void dadoCajeroCuandoRegistraVentaEntoncesOk() throws Exception {
         when(ventaService.save(any(Venta.class))).thenReturn(new Venta());
 
@@ -42,7 +42,7 @@ public class VentaSecurityTest {
 
     // Escenario 2: Error - Un Cliente NO puede registrar ventas
     @Test
-    @WithMockUser(username = "clienteUser", roles = {"CLIENTE"})
+    @WithMockUser(username = "clienteUser", authorities = {"CLIENTE"})
     public void dadoClienteCuandoRegistraVentaEntoncesProhibido() throws Exception {
         String ventaJson = "{\"fecha\":\"2023-10-10\", \"usuario\": {\"id\": 1}}";
 
