@@ -63,7 +63,7 @@ public class ProductoSecurityTest {
         mockMvc.perform(put("/api/productos/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(productoJson))
-                // Dependiendo de tu configuración exacta, Spring Security puede devolver 401 Unauthorized o 302 (Redirección al login)
+                // Dependiendo de la configuración configuración exacta, Spring Security puede devolver 401 Unauthorized o 302 (Redirección al login)
                 .andExpect(status().is3xxRedirection()); 
     }
 }
